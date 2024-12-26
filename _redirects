@@ -1,2 +1,8 @@
 # Serve all routes to index.html for SPA, except for static assets
-/todo/:sub_route    /todo/index.html   200
+/todo/sign-in*    /todo/index.html   200
+/todo/current*    /todo/index.html   200
+/todo/views*    /todo/index.html   200
+/todo/template*    /todo/index.html   200
+/todo/recurring*    /todo/index.html   200
+/todo/task*    /todo/index.html   200
+/todo/subtask*    /todo/index.html   200
