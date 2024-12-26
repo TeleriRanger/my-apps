@@ -10,6 +10,7 @@ PUBLIC_DIR="./build"                    # The directory Cloudflare Pages uses to
 rm -rf $PUBLIC_DIR
 mkdir -p $PUBLIC_DIR/todo
 # mkdir -p $PUBLIC_DIR/dashboard
+cp ./_redirects $PUBLIC_DIR/_redirects
 
 # Get the latest successful workflow run for each repository
 TODO_RUN_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
