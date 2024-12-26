@@ -43,7 +43,7 @@ unzip -q todo-artifact.zip -d $PUBLIC_DIR/todo
 # unzip -q dashboard-artifact.zip -d $PUBLIC_DIR/dashboard
 
 # Clean up the artifact zip files
-# rm todo-artifact.zip
+rm todo-artifact.zip
 # rm dashboard-artifact.zip
 
 echo "Artifacts have been extracted and placed in the public directory."
