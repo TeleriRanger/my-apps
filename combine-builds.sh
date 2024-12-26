@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# Install jq because CF Pages doesn't include it
+apt-get update && apt-get install -y jq
+
 # Define repository names and artifact names
 TODO_REPO="TeleriRanger/todo-app"           # Replace with your GitHub username and repo name
 # DASHBOARD_REPO="username/dashboard-repo" # Replace with your GitHub username and repo name
