@@ -1,9 +1,5 @@
 #!/bin/bash
 
-
-# Install jq because CF Pages doesn't include it
-apt-get update && apt-get install -y jq
-
 # Define repository names and artifact names
 TODO_REPO="TeleriRanger/todo-app"           # Replace with your GitHub username and repo name
 # DASHBOARD_REPO="username/dashboard-repo" # Replace with your GitHub username and repo name
@@ -17,14 +13,16 @@ mkdir -p $PUBLIC_DIR/todo
 
 # Get the latest successful workflow run for each repository
 TODO_RUN_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-  "https://api.github.com/repos/$TODO_REPO/actions/runs?status=success&per_page=1" | jq -r '.workflow_runs[0].id')
+  "https://api.github.com/repos/$TODO_REPO/actions/runs?status=success&per_page=1" | \
+  grep -o '"id": [0-9]*' | head -n 1 | awk '{print $2}')
 
 # DASHBOARD_RUN_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
 #   "https://api.github.com/repos/$DASHBOARD_REPO/actions/runs?status=success&per_page=1" | jq -r '.workflow_runs[0].id')
 
 # Fetch the artifact from todo-repo
 TODO_ARTIFACT_URL="https://api.github.com/repos/$TODO_REPO/actions/runs/$TODO_RUN_ID/artifacts"
-TODO_ARTIFACT_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" $TODO_ARTIFACT_URL | jq -r ".artifacts[] | select(.name==\"$TODO_ARTIFACT\") | .id")
+TODO_ARTIFACT_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" $TODO_ARTIFACT_URL | \
+  grep -o '"id": [0-9]*' | head -n 1 | awk '{print $2}')
 
 # curl -H "Authorization: token $GITHUB_TOKEN" \
 #   -L "https://api.github.com/repos/$TODO_REPO/actions/artifacts/$TODO_ARTIFACT_ID/contents" \
