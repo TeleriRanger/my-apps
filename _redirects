@@ -1,5 +1,5 @@
 # Serve all routes to index.html for SPA, except for static assets
-/*    /index.html   200
+/todo/*    /todo/index.html   200
 
 # Exclude static assets and API routes from the redirect rule
-/assets/*   /assets/:splat  200
+/todo/assets/*   /todo/assets/:splat  200
