@@ -5,4 +5,4 @@ deployment repo for my applications
 build: 758c8e0
 
 ## stretch-helper
-build: fdac5b4
+build: 80e235
